@@ -1,0 +1,133 @@
+#container{
+	width:1000px;
+	margin: 0 auto;
+	background:#eeeeee;
+	}
+#titlebar1{
+	text-align:center;	height:100px;	font-size:30px;	vertical-align: middle;	color: #000000;	background-image:url('../image/titlebar1.png');
+}
+#titlebar2{
+	text-align:center;	height:100px;	font-size:30px;
+	color: #000000;	bfackground-image:url('../image/titlebar2.png');
+}
+#titlebar3{
+	text-align:center;	height:100px;	font-size:30px;	color: #000000;
+	background-image:url('../image/titlebar3.png');
+}
+#titlebar{
+	text-align:left;	height:50px;	background:#eeeeee;
+	}
+#header{
+	text-align:center;	height:30px;	background:#eeeeee;
+	}
+#menu{
+	width:300px;	float:left;	text-align:left;	background:#ccccca;
+	}
+#content{
+	width:700px;
+	float:left;
+	text-align:left;
+	background:#eeeee0;
+	}
+#tabb{
+	width:1000px;
+	text-align:center;
+	background:#eeeeee;
+	float:left;
+	}
+#tab{
+	width:1000px;
+	text-align:center;
+	background:#eeeeee;
+
+	}
+#totel1{
+	text-align:right;
+	}
+#totel{
+	color:blue;
+	text-align:right;
+	background:gray;
+	}
+.h1{
+	font-size:30px;
+	color:red;
+}
+.header{
+	text-align:center;
+	background:#ccccca;
+}
+.c1{	text-align:center;	background:#eeeee0;	}
+.c2{	text-align:center;	background:#ffffff;	}
+.c3{	text-align:center;	background:#ff9999;	}
+.c4{	text-align:center;	background:#ffffff;	}
+.c5{	text-align:center;	background:gray;	}
+.c6{	text-align:center;	background:georgian;	}
+.c7{	text-align:center;	background:#555550;	}
+#textbox{width:300px;height:30px;background:#ffffff;line-height:31px;color:#000000;font-size:20px;font-weight:bold;border-color:#ccccc0;border-style:solid;}
+#button{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/act.png');}
+#btlogin{width:101px;height:101px;color:#000000;border-style:hidden;background-image:url('../image/login.png');}
+#button2{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/can.png');}
+#btback{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/back2.png');}
+#btadd{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/add2.png');}
+#btcan{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/can.png');}
+#btfind{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/find.png');}
+#btaccs{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/accs.png');}
+#btaccs2{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/accs2.png');}
+#btsave{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/save.png');}
+#btaddint{width:105px;height:105px;color:#000000;border-style:solid;background-image:url('../image/addint.png');}
+
+/*=======================ใช้ส่วน หน้าแรก ================*/
+#bglogin{	width:100%;	float:left;	height:560px;	background-image:url('../image/bglogin.png');	}
+#red{
+color:red;
+}
+.style8 { font-family: prompt, sans-serif; font-size: 18px; text-decoration:none; }
+/*
+input[type=password], select {
+		width: 50%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+}
+
+input[type=text], select {
+		width: 50%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+}
+
+input[type=submit] {		width: 50%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+}
+
+input[type=submit]:hover {	background-color: #45a049;}
+
+
+   div ส่วนเมนู และแบบฟอร์ม         */
+#content1{
+	width:700px;
+	float:left;
+	height:500px;
+	background:#cccccc;
+	}
+#content2{
+	width:300px;
+	float:left;
+	height:500px;
+	text-align:right;
+	background:#cfcfcf;
+	}

@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+	font-family: "Times New Roman", Times, serif;
+	color: blue;
+}
+
+.1{
+	color:#55555;
+	font-family: Tahoma, "ms sans Serif";
+	font-size:20px;
+	background-image: url(../images/bg.png);
+	border: 1px solid #999999;
+}
+.textbox_t1{
+	font-family: Tahoma, "ms sans Serif";
+	font-size:50px;
+}

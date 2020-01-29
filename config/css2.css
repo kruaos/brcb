@@ -1,0 +1,68 @@
+/*  div ส่วนตาราง      */
+div#showtable{
+	width:1000px;
+	margin: 0 auto;
+	background:#eeeee1;
+	}
+div#tr{
+	width:1000px;
+	float:left;
+	background:#eeeee1;
+	}
+div#header{
+	text-align:center;
+	width:1000px;
+	background:#eeefff;
+	}
+div#code{
+	width:50px;
+	float:left;
+	background:#dddddd;
+}
+div#name{
+	width:200px;
+	float:left;
+	background:#b5b5b5;
+}
+div#address{
+	width:150px;
+	float:left;
+	background:#dddddd;
+}
+div#idcard{
+	width:120px;
+	float:left;
+	background:#b5b5b5;
+}
+div#hbd{
+	width:80px;
+	float:left;
+	background:#dddddd;
+}
+div#add{
+	width:100px;
+	text-align:center;
+	float:left;
+	background:#b5b5b5;
+}
+div#update{
+	width:100px;
+	text-align:center;
+	float:left;
+	background:#dddddd;
+}
+div#type{
+	width:100px;
+	float:left;
+	background:#b5b5b5;
+}
+div#status{
+	width:50px;
+	float:left;
+	background:#dddddd;
+}
+div#takenote{
+	width:50px;
+	float:left;
+	background:#b5b5b5;
+}

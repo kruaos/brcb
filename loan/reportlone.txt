@@ -1,0 +1,42 @@
+<div id="tab">
+<table class="header" width="1000" align="center" >
+<th  colspan="10"  > ตารางถอนเงินออมทรัพย์สัจจะ </th>
+<tr>
+	<td class="c1">รหัสเงินกู้</td>
+	<td class="c2">ชำระเงินต้น</td>
+	<td class="c1">ชำระดอกเบี้ย</td>
+	<td class="c2">ยอดชำระรวม</td>
+	<td class="c1">งวดที่</td>
+	<td class="c2">วันที่ทำรายการ</td>
+	<td class="c1">สถานะ</td>
+
+</tr>
+<?php //เริ่มการวบรอบดึงข้อมูล
+include('../config/config.php');
+// สูตร ค่อยทำแยกตามกรรมการ อ้างอิงตม sestion
+	$sql="SELECT * FROM eventloan where loanno = '$loanno' order by createdate" ;
+	$query=mysqli_query($link,$sql);
+	$numrows=mysqli_num_rows($query);
+		for($i=1;$i<=$numrows;$i++){
+		$result=mysqli_fetch_array($query);	  
+	?> 
+<tr>
+	<td class="c1"><?=$result["loanno"];?></td>
+	<td class="c2"><?=$result["payment"];?></td>
+	<td class="c1"><?=$result["reciveinterest"];?></td>
+	<td class="c2"><?php echo $amount;?></td>
+	<td class="c1"><?=$result["loantime"];?></td>
+	<td class="c2"><?=$result["createdate"];?></td>
+	<td class="c1"><?php 
+	$code=$result['code'];
+	include('../config/config.php');
+		$sql1="SELECT * FROM evcode where codeid='$code'";
+			$query1=mysqli_query($link,$sql1);
+			$dbarr=mysqli_fetch_array($query1);
+		echo $dbarr['codename'];
+	?></td>
+
+</tr>
+	<?php }
+	?>
+</table>
