@@ -103,7 +103,7 @@ while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
         ?>
        
     </div>
-    <a href="dep-pay-tool.php" class="btn btn-danger col-12">ย้อนหลับ</a>
+    <a href="dep-pay-tool.php" class="btn btn-danger col-12">ย้อนกลับ</a>
 </div>
 
 </div>

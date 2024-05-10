@@ -22,12 +22,12 @@ $TotalSumAmountIns = 0;
 
     <div class="display-4"> ประจำวันที่ <?php echo show_day($DateNow); ?></div>
 
-    <div class="d-print-none">
+    <!-- <div class="d-print-none">
         <li><a href="dep-show-report-daily.php">รายละเอียดการฝาก ประจำวัน</a></li>
         <li><a href="dep-show-report-daily-new.php">รายละเอียดการฝาก เลือกวัน Deposit_n</a></li>
         <li><a href="dep-show-report-tran.php">รายละเอียดการฝาก เลือกวัน-สำหรับโอน</a></li>
         <hr>
-    </div>
+    </div> -->
     <?php
     // $DateNow="2020-07-05";
     $ShowTableDepositSQL = "SELECT * from deposit where CreateDate='$DateNow' group by Username ";
@@ -41,11 +41,11 @@ $TotalSumAmountIns = 0;
             <tr>
                 <th>ที่</th>
                 <th>เจ้าหน้าที่</th>
-                <th>จำนวนราย </th>
-                <th>dep </th>
-                <th>ins </th>
-                <th>ยอดเงินรวม </th>
-                <th>จัดการ</th>
+                <th style="text-align: right;">จำนวนราย </th>
+                <th style="text-align: right;">ยอดฝากสัจจะ </th>
+                <th style="text-align: right;">ยอด พชพ </th>
+                <th style="text-align: right;">ยอดเงินรวม </th>
+                <th style="text-align: center;">จัดการ</th>
             </tr>
         </thead>
         <?php
@@ -82,11 +82,11 @@ $TotalSumAmountIns = 0;
             <tr>
                 <td><?php echo $num; ?></td>
                 <td><?php echo $FullNameEmp; ?></td>
-                <td><?php echo $CountAmount; ?></td>
-                <td align="right"><?php echo number_format($SumAmountDep, 2); ?></td>
-                <td align="right"><?php echo number_format($SumAmountIns, 2); ?></td>
-                <td align="right"><?php echo number_format($SumAmount, 2); ?></td>
-                <td>
+                <td style="text-align: center;"><?php echo $CountAmount; ?></td>
+                <td style="text-align: right;"><?php echo number_format($SumAmountDep, 2); ?></td>
+                <td style="text-align: right;"><?php echo number_format($SumAmountIns, 2); ?></td>
+                <td style="text-align: right;"><?php echo number_format($SumAmount, 2); ?></td>
+                <td style="text-align: center;">
                     <a class="btn btn-warning d-print-none" href="dep-report-user.php?Username=<?php echo $Username; ?>">รายการทั้งหมด</a>
                     <a class="btn btn-success d-print-none" href="dep-report-user-send.php?Username=<?php echo $Username; ?>">ส่งรายงาน</a>
                 </td>
@@ -107,6 +107,15 @@ $TotalSumAmountIns = 0;
             $amountDepCount = $rs1['amountDepCount'];
         }
         ?>
+        <tr class="d-print-none">
+            <td></td>
+            <td>รวม</td>
+            <td style="text-align: center;"><?php echo Number_format($amountDepCount, 0); ?></td>
+            <td style="text-align: right;"><?php echo number_format($TotalSumAmountDep, 2); ?></td>
+            <td style="text-align: right;"><?php echo number_format($TotalSumAmountIns, 2); ?></td>
+            <td style="text-align: right;"><?php echo number_format($TotalSumAmount, 2); ?></td>
+            <td></td>
+        </tr>
         <tr class="table-active">
             <td></td>
             <td></td>

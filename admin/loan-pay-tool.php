@@ -12,9 +12,16 @@ $fullnameemp = $_SESSION['fullnameemp'];
 $date_now = date('Y-m-d');
 // $date_now='2019-05-05';
 $sql_show_loanpayment = "SELECT * from loanpayment where CreateDate='$date_now' 
-	and Username='$employee_use' ORDER BY IDLoanPay ASC limit 10";
+	and Username='$employee_use' ORDER BY IDLoanPay DESC  limit 10";
 $q_show_loanpayment = mysqli_query($link, $sql_show_loanpayment);
 // print_r($sql_show_loanpayment);
+$sql_show_fullname = "SELECT IDMember, Title, Firstname, Lastname  from  member ";
+$qshow_fullname = mysqli_query($link, $sql_show_fullname);
+$fullnamemember=array();
+while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
+    $fullnamemember[$re_show_fullname['IDMember']] = $re_show_fullname['Title'].$re_show_fullname['Firstname']." ".$re_show_fullname['Lastname'];
+}
+
 ?>
 <div class="container-fluid">
 	<div class="row">
@@ -31,7 +38,7 @@ $q_show_loanpayment = mysqli_query($link, $sql_show_loanpayment);
 	</div>
 	<div class="row">
 		<!-- ส่วนแสดงรายละเอียดผู้กู้ -->
-		<div class="col-4 d-print-none">
+		<div class="col-3 d-print-none">
 
 			<form method="POST" action="loan-pay-tool-select.php">
 				<div class="form-group">
@@ -50,13 +57,13 @@ $q_show_loanpayment = mysqli_query($link, $sql_show_loanpayment);
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">เลขสมาชิก</th>
-						<!-- <th scope="col">เลขบัญชี</th> -->
+						<th scope="col">รหัส</th>
+						<th scope="col">ชื่อ-สกุล</th>
 						<th scope="col">เงินต้น</th>
 						<th scope="col">ดอกเบี้ย</th>
 						<th scope="col">รวมจ่าย</th>
 						<th scope="col">user</th>
-						<th scope="col">edit</th>
+						<th scope="col">จัดการ</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,7 +82,10 @@ $q_show_loanpayment = mysqli_query($link, $sql_show_loanpayment);
 							<th scope="row"><?php echo $num;
 											$num = $num + 1 ?></th>
 							<td><?php echo $IDMember; ?></td>
-							<!-- <td><?php echo $rs_show_lpm['RefNo']; ?></td> -->
+
+							<td>
+							<?php echo $fullnamemember[$IDMember] ;?>
+						</td>
 							<td><?php echo number_format($rs_show_lpm['PayTotal']); ?></td>
 							<td><?php echo number_format($rs_show_lpm['Interest']); ?></td>
 							<td><?php echo number_format($rs_show_lpm['Payment']); ?></td>

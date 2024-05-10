@@ -20,7 +20,7 @@ if (isset($_GET['page'])) {
   }
     $start = ($page - 1) * $perpage;
 
-  $sql = "select * from member";
+  $sql = "SELECT * from member";
   $query = mysqli_query($link, $sql);
   $total_record=$query->num_rows;
   $total_page = ceil($total_record / $perpage);

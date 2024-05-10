@@ -18,8 +18,9 @@ function show_day($showday)
 
     <div class="display-3">รายงานการส่งเงินกู้</div>
     <div class="display-4">ประจำวันที่ <?php echo show_day(date('Y-m-d')); ?> </div>
+    
     <p>
-    <div class="d-print-none">
+    <!-- <div class="d-print-none">
 
         <li> <a href="loan-show-report-daily.php"> รายงานรรับเงินกู้ประจำวัน </a></li>
         <li> <a href="loan-show-report-monthly.php"> รายงานรรับเงินกู้รายเดือน </a></li>
@@ -28,7 +29,7 @@ function show_day($showday)
         <li> <a href="loan-show-now.php"> สมาชิกที่ยังไม่ได้ปิดบัญชี </a></li>
         </p>
         <hr>
-    </div>
+    </div> -->
     <?php
     $DateNow = date('Y-m-d');
     $ShowTableLoanPaymentSQL = "SELECT * from loanpayment where Createdate='$DateNow' group by Username ";
@@ -42,10 +43,11 @@ function show_day($showday)
             <tr>
                 <th>ที่</th>
                 <th>เจ้าหน้าที่</th>
-                <th>จำนวนรายการ</th>
-                <th>เงินต้น</th>
-                <th>ดอกเบี้ย</th>
-                <th>ยอดเงินรวม </th>
+                <th style="text-align:center">จำนวนรายการ</th>
+                <th style="text-align:right">เงินต้น</th>
+                <th style="text-align:right">ดอกเบี้ย</th>
+                <th style="text-align:right">ยอดเงินรวม </th>
+                <th></th>
                 <th class="d-print-none">จัดการ</th>
             </tr>
         </thead>
@@ -85,11 +87,14 @@ function show_day($showday)
             <tr>
                 <td><?php echo $num; ?></td>
                 <td><?php echo $FullNameEmp; ?></td>
-                <td><?php echo $CountPay; ?></td>
+                <td style="text-align:center"><?php echo $CountPay; ?></td>
                 <td style="text-align:right;"><?php echo number_format($PayTotal, 2); ?></td>
                 <td style="text-align:right;"><?php echo number_format($Interest, 2); ?></td>
                 <td style="text-align:right;"><?php echo number_format($SumPay, 2); ?></td>
-                <td class="d-print-none"><a href="loan-report-user.php?username=<?php echo $Username; ?>">แสดง</a></td>
+                <td></td>
+                <td class="d-print-none">
+                    <a href="loan-report-user.php?username=<?php echo $Username; ?>" class="btn btn-primary">แสดง</a>
+                </td>
             </tr>
         <?php
             $num++;
@@ -101,10 +106,10 @@ function show_day($showday)
         ?>
         <tr class="table-active">
             <td></td>
-            <td>
+            <td > 
                 <div style="font-size:20px">ผลรวม</div>
             </td>
-            <td style="font-size:20px">
+            <td style="font-size:20px; text-align:center">
                 <?php echo number_format($allCountPay); ?>
 
             </td>
@@ -119,7 +124,9 @@ function show_day($showday)
 
             </td>
             <td class="d-print-none"></td>
+        <td>
 
+        </td>
         </tr>
     </table>
     <button class="btn btn-danger col d-print-none" onclick="window.print()">พิมพ์รายงาน</button>
