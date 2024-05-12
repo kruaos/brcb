@@ -11,8 +11,7 @@ $fullnameemp = $_SESSION['fullnameemp'];
 
 $date_now = date('Y-m-d');
 // $date_now='2019-05-05';
-$sql_show_loanpayment = "SELECT * from loanpayment where CreateDate='$date_now' 
-	and Username='$employee_use' ORDER BY IDLoanPay DESC  limit 10";
+$sql_show_loanpayment = "SELECT * from loanpayment where Lastupdate='$date_now' and Username='$employee_use' ORDER BY IDLoanPay DESC  limit 10";
 $q_show_loanpayment = mysqli_query($link, $sql_show_loanpayment);
 // print_r($sql_show_loanpayment);
 $sql_show_fullname = "SELECT IDMember, Title, Firstname, Lastname  from  member ";

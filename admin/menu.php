@@ -24,10 +24,6 @@
           <i class="fas fa-donate"></i>
           ฝากเงินสัจจะ
         </a>
-        <a class="dropdown-item" href="wit-pay-tool.php">
-          <i class="fas fa-donate"></i>
-          ถอนเงินสัจจะ
-        </a>
         <a class="dropdown-item" href="dep-report.php">
           <i class="fas fa-print"></i>
           รายงานเงินสัจจะ
@@ -38,14 +34,11 @@
           <i class="fas fa-user-cog"></i>
           สมัครสมาชิก
         </a>
-        <a class="dropdown-item" href="unmember.php">
-          <i class="fas fa-search"></i>
-          <span>ลาออกจากสมาชิก</span></a>
-        </a>
         <a class="dropdown-item" href="dep-member-table.php">
           <i class="fas fa-user-cog"></i>
           ตารางสมาชิก
         </a>
+
       </div>
     </li>
 
@@ -99,16 +92,16 @@
       <div class="dropdown-menu" aria-labelledby="pagesDropdown">
         <h6 class="dropdown-header">ทำรายการ:</h6>
         <a class="dropdown-item" href="bank-show.php">
-          <i class="fas fa-university"></i>
-          <span>ข้อมูลสมาชิกธนาคาร</span></a>
+        <i class="fas fa-university"></i>
+        <span>ข้อมูลสมาชิกธนาคาร</span></a>
         </a>
         <a class="dropdown-item" href="bank-event.php">
-          <i class="fas fa-file-invoice-dollar"></i>
-          <span>ฝาก-ถอน-แก้ไข</span></a>
+        <i class="fas fa-file-invoice-dollar"></i>
+        <span>ฝาก-ถอน-แก้ไข</span></a>
         </a>
         <a class="dropdown-item" href="bank-report.php">
-          <i class="fas fa-print"></i>
-          <span>รายงานส่งเงิน</span></a>
+        <i class="fas fa-print"></i>
+        <span>รายงานส่งเงิน</span></a>
         </a>
         <div class="dropdown-divider"></div>
         <h6 class="dropdown-header">Other Pages:</h6>
@@ -120,7 +113,6 @@
           <i class="fas fa-search"></i>
           <span>สมัครสมาชิก</span></a>
         </a>
-
         <a class="dropdown-item" href="#">
           <i class="fas fa-search"></i>
           <span>คิดดอกเบี้ยเงินฝาก</span></a>

@@ -28,6 +28,23 @@ $memberID = $_GET['memid'];
     <h3 class="m-0 font-weight-bold text-primary"><?php echo $fullname ; ?></h3>
   </div>
   <div class="card-body">
+
+  <?php
+        $sqltest = "SELECT * from Loanbook , loanbooksheet where Loanbook.IDMember=$memberID and Loanbook.RefNo = loanbooksheet.RefNo";
+        $querytest = mysqli_query($link, $sqltest);
+        
+        while ($rstest = mysqli_fetch_array($querytest)) {
+          if (isset($rstest)){
+            $sql = "SELECT * from Loanbook , loanbooksheet where Loanbook.IDMember=$memberID and Loanbook.RefNo = loanbooksheet.RefNo";
+            $query = mysqli_query($link, $sql);
+            echo 1;
+          }else{
+            $sql = "SELECT * from Loanbook  where IDMember=$memberID";
+            $query = mysqli_query($link, $sql);
+            echo 2 ;
+          }
+        }
+  ?>
     <table class="table table-bordered  table-sm" width="100%" cellspacing="0">
       <thead>
         <tr>
@@ -48,14 +65,26 @@ $memberID = $_GET['memid'];
 
         $sql = "SELECT * from Loanbook , loanbooksheet where Loanbook.IDMember=$memberID and Loanbook.RefNo = loanbooksheet.RefNo";
         $query = mysqli_query($link, $sql);
-        $num = 0;
+        
+        // while ($rstest = mysqli_fetch_array($query)) {
+        //   if (empty($rstest)){
+        //     $sql = "SELECT * from Loanbook  where IDMember=$memberID";
+        //     $query = mysqli_query($link, $sql);
+
+        //   }
+        // }
 
         while ($rs1 = mysqli_fetch_array($query)) {
+                
+          $num = 0;
         ?>
           <tr>
             <td><?php echo  $num = $num + 1; ?></td>
 
             <td style="text-align: center; ">
+
+        
+                <?php //echo  print_r($rs1); ?>
                 <?php echo  $rs1['lbsID']; ?>
             </td>
             <td><label><?php echo  show_day($rs1['CreateDate']); ?></label></td>
@@ -95,6 +124,12 @@ $memberID = $_GET['memid'];
 
         <?php
         }
+
+
+
+
+
+
         mysqli_close($link);
         ?>
       </tbody>

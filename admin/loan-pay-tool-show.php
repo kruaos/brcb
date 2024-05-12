@@ -11,8 +11,7 @@ $fullnameemp = $_SESSION['fullnameemp'];
 
 $date_now = date('Y-m-d');
 // $date_now='2019-05-05';
-$sql_show_loanpayment = "SELECT * from loanpayment where CreateDate='$date_now' 
-	and Username='$employee_use' ORDER BY IDLoanPay ASC";
+$sql_show_loanpayment = "SELECT * from loanpayment where Lastupdate='$date_now' and Username='$employee_use' ORDER BY IDLoanPay ASC";
 $q_show_loanpayment = mysqli_query($link, $sql_show_loanpayment);
 // print_r($sql_show_loanpayment);
 
@@ -22,8 +21,11 @@ $fullnamemember=array();
 while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
     $fullnamemember[$re_show_fullname['IDMember']] = $re_show_fullname['Title'].$re_show_fullname['Firstname']." ".$re_show_fullname['Lastname'];
 }
-
-
+function show_day($showday)
+{
+	$m_name = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+	echo  number_format(substr($showday, 8, 2)) . "  " . $m_name[number_format(substr($showday, 5, 2))] . " " . (substr($showday, 0, 4) + 543);
+}
 
 ?>
 <div class="container-fluid">
@@ -53,6 +55,7 @@ while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
                         <th scope="col">ดอกเบี้ย</th>
                         <th scope="col">รวมจ่าย</th>
                         <th scope="col">user</th>
+                        <th scope="col">หมายเหตุ</th>
                         <th scope="col">edit</th>
                     </tr>
                 </thead>
@@ -70,7 +73,7 @@ while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
                     ?>
                         <tr>
                             <th scope="row"><?php echo $num;
-                                            $num = $num + 1 ?></th>
+                             $num = $num + 1 ?></th>
                             <td><?php echo $IDMember; ?></td>
                             <td>
                                 <?php echo $fullnamemember[$IDMember] ;?>
@@ -80,6 +83,7 @@ while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
                             <td><?php echo number_format($rs_show_lpm['Interest']); ?></td>
                             <td><?php echo number_format($rs_show_lpm['Payment']); ?></td>
                             <td><?php echo $rs_show_lpm['Username']; ?></td>
+                            <td><?php echo show_day($rs_show_lpm['CreateDate']); ?></td>
                             <td style="">
                                 <a href="loan-pay-tool-edit.php?IDLoanPay=<?php echo $rs_show_lpm['IDLoanPay']; ?>&IDMember=<?php echo $IDMember; ?>&RefNo=<?php echo $rs_show_lpm['RefNo']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
                                 <a href="loan-pay-tool-del.php?IDLoanPay=<?php echo $rs_show_lpm['IDLoanPay']; ?>&IDMember=<?php echo $IDMember; ?>&RefNo=<?php echo $rs_show_lpm['RefNo']; ?>" class="btn btn-danger btn-sm">ลบ</a>

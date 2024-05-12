@@ -14,7 +14,8 @@ $Payment= str_replace(',', '', $_POST['amount_loan']);
 $PayTotal= str_replace(',', '', $_POST['Payment_loan']);
 $PayInterest= str_replace(',', '', $_POST['instal_loan']);
 $InterestOutst=0;
-$CreateDate=date('Y-m-d');
+$CreateDate= $_POST['todayDate'];
+// $CreateDate=date('Y-m-d');
 $LastUpdate=date('Y-m-d');	
 $ReceiveStatus="I";
 

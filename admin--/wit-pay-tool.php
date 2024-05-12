@@ -95,7 +95,11 @@ while ($re_show_fullname = mysqli_fetch_array($qshow_fullname)) {
                             <td><?php echo $IDMember; ?></td>
                             <td><?php echo  $fullnamemember[$IDMember]; ?></td>
                             <td><?php echo $Username; ?></td>
-                            <td><?php echo $Amount; ?></td>
+                            <td class="text-right"><?php 
+                            
+                            echo number_format(-$Amount,'0'); 
+                            ?>
+                            </td>
                             <td></td>
                             <!-- <td>
                                 <a href="dep-pay-edit.php?IDDeposit=<?php echo $IDDeposit; ?>" class="btn-warning btn-sm">แก้ไข</a>

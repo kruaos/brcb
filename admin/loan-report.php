@@ -32,7 +32,7 @@ function show_day($showday)
     </div> -->
     <?php
     $DateNow = date('Y-m-d');
-    $ShowTableLoanPaymentSQL = "SELECT * from loanpayment where Createdate='$DateNow' group by Username ";
+    $ShowTableLoanPaymentSQL = "SELECT * from loanpayment where LastUpdate='$DateNow' group by Username ";
     // echo $ShowTableLoanPaymentSQL;
     $ShowTLPQuery = mysqli_query($link, $ShowTableLoanPaymentSQL);
     // print_r($ShowTLPQuery);
@@ -58,22 +58,22 @@ function show_day($showday)
         while ($TLP = mysqli_fetch_array($ShowTLPQuery)) {
             // print_r($TLP);
             $Username = $TLP['Username'];
-            $CountLonepaymentSql = "SELECT count(Payment) as CountPay from loanpayment where Createdate='$DateNow' and Username='$Username' ";
+            $CountLonepaymentSql = "SELECT count(Payment) as CountPay from loanpayment where LastUpdate='$DateNow' and Username='$Username' ";
             $CountLpQuery = mysqli_query($link, $CountLonepaymentSql);
             while ($CLp = mysqli_fetch_array($CountLpQuery)) {
                 $CountPay = $CLp['CountPay'];
             }
-            $SumPayTotalSql = "SELECT Sum(PayTotal) as PayTotal from loanpayment where Createdate='$DateNow' and Username='$Username' ";
+            $SumPayTotalSql = "SELECT Sum(PayTotal) as PayTotal from loanpayment where LastUpdate='$DateNow' and Username='$Username' ";
             $SumPayTotalQ = mysqli_query($link, $SumPayTotalSql);
             while ($spt = mysqli_fetch_array($SumPayTotalQ)) {
                 $PayTotal = $spt['PayTotal'];
             }
-            $SumInterestSql = "SELECT Sum(Interest) as Interest from loanpayment where Createdate='$DateNow' and Username='$Username' ";
+            $SumInterestSql = "SELECT Sum(Interest) as Interest from loanpayment where LastUpdate='$DateNow' and Username='$Username' ";
             $SumInterestQ = mysqli_query($link, $SumInterestSql);
             while ($sit = mysqli_fetch_array($SumInterestQ)) {
                 $Interest = $sit['Interest'];
             }
-            $SumLonepaymentSql = "SELECT Sum(Payment) as SumPay from loanpayment where Createdate='$DateNow' and Username='$Username' ";
+            $SumLonepaymentSql = "SELECT Sum(Payment) as SumPay from loanpayment where LastUpdate='$DateNow' and Username='$Username' ";
             $SumLpQuery = mysqli_query($link, $SumLonepaymentSql);
             while ($SLp = mysqli_fetch_array($SumLpQuery)) {
                 $SumPay = $SLp['SumPay'];

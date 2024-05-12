@@ -18,28 +18,30 @@ $employee_use=$_SESSION['LoanEmplopeeUser'];
 	<div class="row">
 <!-- ส่วนแสดงรายละเอียดผู้กู้ -->
 		<div class="col-4 d-print-none">
-        <table class="table table-bordered"  id='EdataTable' >
+        <table class="table table-bordered " width="1000px"  >
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">RefNo</th>
-                <th scope="col">InterestRate</th>
-                <th scope="col">Instalment</th>
-                <th scope="col">Amount</th>
-                <th scope="col">LoanStatus</th>
-                <th scope="col">PayStatus</th>
-                <th scope="col">CreateDate</th>
-                <th scope="col">LastUpdate</th>
-                <th scope="col">LimitDate</th>
+                <th class="col">#</th>
+                <th class="col">รหัสสัญญากู้</th>
+                <!-- <th scope="col">InterestRate</th> -->
+                <th class="col">ระยะเวลา</th>
+                <th class="col">Amount</th>
+                <th class="col">LoanStatus</th>
+                <th class="col">PayStatus</th>
+                <th class="col">CreateDate</th>
+                <th class="col">LastUpdate</th>
+                <th class="col">LimitDate</th>
             </tr>
             </thead>
             <tbody>
 <?php
     $num=0;
-    $SelectLoanbookSQL="SELECT * from loanbook where IDMember = $IDMember and LoanStatus='N'";
+
+    $SelectLoanbookSQL="SELECT * from loanbook , loanbooksheet where IDMember = $IDMember and Loanbook.RefNo = loanbooksheet.RefNo and LoanStatus='N'";
     $SelectLonabookQuery=mysqli_query($link,$SelectLoanbookSQL);
     while($SLb=mysqli_fetch_array($SelectLonabookQuery)){
         $RefNo = $SLb['RefNo'];
+        $lbsID = $SLb['lbsID'];
         $Insurer1 = $SLb['Insurer1'];
         $Insurer2 = $SLb['Insurer2'];
         $InterestRate = $SLb['InterestRate'];
@@ -55,9 +57,9 @@ $employee_use=$_SESSION['LoanEmplopeeUser'];
     ?>
         <tr>
             <td><?php echo $num; ?></td>
-            <td><?php echo "<a href='loan-pay-tool-add.php?RefNo=".$RefNo."'>".$RefNo."</a>"; ?></td>
-            <td><?php echo $InterestRate; ?></td>
-            <td><?php echo $Instalment; ?></td>
+            <td><?php echo "<a href='loan-pay-tool-add.php?RefNo=".$RefNo."'>".$lbsID."</a>"; ?></td>
+            <!-- <td><?php echo $InterestRate; ?></td> -->
+            <td><?php echo $Instalment." เดือน";?></td>
             <td><?php echo $Amount; ?></td>
             <td><?php echo $LoanStatus; ?></td>
             <td><?php echo $PayStatus; ?></td>

@@ -17,7 +17,7 @@ function show_day($showday){
 $now_data=date('Y-m-d');
 
 $sql = "SELECT lp.* ,m.IDMember, m.Firstname, m.Lastname  FROM  loanpayment as lp , member as m , loanbook as lb 
-WHERE lp.RefNo=.lb.RefNo and lp.Username='$Username' and m.IDMember=lb.IDMember and lp.CreateDate ='$now_data' ORDER BY  lp.Username  DESC ";
+WHERE lp.RefNo=.lb.RefNo and lp.Username='$Username' and m.IDMember=lb.IDMember and lp.LastUpdate ='$now_data' ORDER BY  lp.Username  DESC ";
 
 $queryloan = mysqli_query($link, $sql);
 echo " ประจำวันที่ ";

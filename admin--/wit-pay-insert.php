@@ -11,13 +11,12 @@ include('../config/config.php');
 
 unset($_SESSION['IDMember']);
 
-$employee_use = $_SESSION['employee_USER'];
+// $employee_use = $_SESSION['employee_USER'];
 $IDMember = $_POST['IDMember_Dep'];
 // $DepPage = $_SESSION['DepPage'];
 
 
-$ShowMember = "select m.Title, m.Firstname, m.Lastname, m.MemberStatus 
-from Member as m where  m.IDMember=$IDMember";
+$ShowMember = "SELECT m.Title, m.Firstname, m.Lastname, m.MemberStatus from Member as m where  m.IDMember=$IDMember";
 $SMQuery = mysqli_query($link, $ShowMember);
 if ($IDMember == null) {
     echo "กรุณากรอกรหัสสมาชิก  <br>  ";
@@ -82,11 +81,12 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
         </div>
     </div>
     <div class="row">
-        <div class="col col-sm-12 col-md-4 col-lg-4 ">
+        <div class="col col-sm-12 col-md-6 col-lg-6 ">
             <form action="#">
                 <div class="form-group">
-                    <label>รหัสสมาชิก</label>
-                    <input type="text" class="form-control " value="<?php echo $IDMember; ?>" disabled>
+                    <label>รหัสสมาชิก</label> <span class="text-danger"><?php echo $IDMember; ?></span>
+                    <label>ชือ-สกุล</label> <span class="text-danger"><?php echo $FullNameMember; ?></span>
+                    <!-- <input type="text" class="form-control " value="<?php echo $IDMember; ?>" disabled> -->
                 </div>
             </form>
             <?php
@@ -116,15 +116,28 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
                 ?>
                     <form method="POST" action="wit-pay-add.php">
                         <div class="form-group">
-                            <label>ข้อมูลสมาชิก</label>
-                            <input class="form-control " type="text" value="<?php echo $FullNameMember; ?>" disabled>
-                            <input class="form-control " type="text" value="เงินฝากสัจจะ : <?php echo number_format($ShowAmount1, 2); ?>" disabled>
+                            <label>ยอดเงินสัจจะคงเหลือ</label> <span class="text-danger"><?php echo number_format($ShowAmount1, 2); ?></span>
+                            <!-- <label>ข้อมูลสมาชิก</label> <span class="text-danger"><?php echo $FullNameMember; ?></span> -->
+                            <!-- <input class="form-control " type="text" value="<?php echo $FullNameMember; ?>" disabled> -->
+                            <!-- <input class="form-control " type="text" value="เงินฝากสัจจะ : <?php echo number_format($ShowAmount1, 2); ?>" disabled> -->
                             <!-- <input class="form-control " type="text" value="เงินฝากเพื่อนช่วยเพื่อน : <?php echo number_format($ShowAmount2, 2); ?>" disabled> -->
+                <br>
                             <label>ถอนเงินสัจจะ</label>
-                            <input class="form-control " type="number" name="Amount1" value="0" style="font-size:30px; text-align:right" required>
+                            <input class="form-control " type="number" 
+                                name="Amount1" value="0" 
+                                <?php if($ShowAmount1>600){
+                                    $maxValue = $ShowAmount1-600;
+                                }else{
+                                    $maxValue = 0;
+                                }
+                                ?>
+                                max="<?php echo $maxValue; ?>" 
+                                style="font-size:30px; text-align:right"
+                                <?php if($ShowAmount1<600){echo "disabled";} ?>
+                                required>
                             <label>ผู้ถอนเงิน</label>
                             <input class="form-control " type="text" name="witname" value="" style="font-size:30px; text-align:right" required>
-                            
+
                             <!-- <input type="hidden" name="Fullname" value="<?php echo $FullNameMember; ?>"> -->
                             <input type="hidden" name="IDMember" value="<?php echo $IDMember; ?>">
                             <!-- <input type="hidden" name="DepPage" value="<?php echo $DepPage; ?>"> -->
@@ -134,7 +147,7 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
                                 <option value="ลาออก">ลาออกจากสมาชิก</option>
                             </select>
                             <br>
-                            <input type="submit" class="form-control btn-warning " value="ถอน">
+                            <input type="submit" class="form-control btn-warning " value="ทำรายการถอน">
                         <?php
                     }
                         ?>
@@ -142,7 +155,7 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
                     </form>
                     <a href="wit-pay-tool.php" class="form-control btn btn-danger">ยกเลิก</a>
                 </div>
-                <div class="col col-sm-12 col-md-8 col-lg-8 ">
+                <div class="col col-sm-12 col-md-6 col-lg-6 ">
 
                 </div>
                 <?PHP
