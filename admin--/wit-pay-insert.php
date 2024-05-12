@@ -50,7 +50,7 @@ while ($SRf = mysqli_fetch_array($SRfQuery)) {
 
 $ShowAmount1 = $SRFArray['1']['Balance'];
 // select 
-$ShowAmount2 = $SRFArray['2']['Balance'];
+// $ShowAmount2 = $SRFArray['2']['Balance'];
 
 $Amount1 = 30;
 $Amount2 = 5;
@@ -90,29 +90,29 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
                 </div>
             </form>
             <?php
-            if ($CheckInputNumrows <> 0) {
+            // if ($CheckInputNumrows <> 0) {
                 // แจ้งว่ามีการฝากแล้ว 
 
-                while ($CIQ = mysqli_fetch_array($CheckInputQuery)) {
-                    $showUsername = $CIQ['firstname'] . "  " . $CIQ['lastname'];
-                    // print_r($RQCT);
-                }
+                // while ($CIQ = mysqli_fetch_array($CheckInputQuery)) {
+                //     $showUsername = $CIQ['firstname'] . "  " . $CIQ['lastname'];
+                //     // print_r($RQCT);
+                // }
             ?>
-                <div class="alert alert-danger" role="alert">
+                <!-- <div class="alert alert-danger" role="alert">
                     มีการฝากแล้วโดย
                     <?php
                     echo $showUsername;
                     ?>
-                </div>
+                </div> -->
 
                 <div class="form-group">
-                    <label>ข้อมูลสมาชิก</label>
+                    <!-- <label>ข้อมูลสมาชิก</label>
                     <input class="form-control " type="text" value="<?php echo $FullNameMember; ?>" disabled>
                     <input class="form-control " type="text" value="เงินฝากสัจจะ : <?php echo number_format($ShowAmount1, 2); ?>" disabled>
-                    <input class="form-control " type="text" value="เงินฝากเพื่อนช่วยเพื่อน : <?php echo number_format($ShowAmount2, 2); ?>" disabled>
+                    <input class="form-control " type="text" value="เงินฝากเพื่อนช่วยเพื่อน : <?php echo number_format($ShowAmount2, 2); ?>" disabled> -->
 
                 <?php
-            } else {
+            // } else {
                 ?>
                     <form method="POST" action="wit-pay-add.php">
                         <div class="form-group">
@@ -131,13 +131,21 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
                                     $maxValue = 0;
                                 }
                                 ?>
-                                max="<?php echo $maxValue; ?>" 
+                                max="<?php //echo $maxValue; ?>" 
                                 style="font-size:30px; text-align:right"
                                 <?php if($ShowAmount1<600){echo "disabled";} ?>
                                 required>
-                            <label>ผู้ถอนเงิน</label>
-                            <input class="form-control " type="text" name="witname" value="" style="font-size:30px; text-align:right" required>
-
+                                <?php if($ShowAmount1<600){
+                                    echo "<div class='alert alert-danger'> ยอดเงินสัจจะคงเหลือไม่เพียงพอ </div>";
+                                }else{
+                                    echo "<div class='alert alert-primary'> ถอนได้ไม่เกิน ".number_format($maxValue)."</div>";
+                                    } ?>
+                                
+                                <div class="from-group">
+                                    <label>ผู้ถอนเงิน</label>
+                                    <input class="form-control " type="text" name="witname" value="" style="font-size:30px; text-align:right" required>
+                                </div>
+                                    
                             <!-- <input type="hidden" name="Fullname" value="<?php echo $FullNameMember; ?>"> -->
                             <input type="hidden" name="IDMember" value="<?php echo $IDMember; ?>">
                             <!-- <input type="hidden" name="DepPage" value="<?php echo $DepPage; ?>"> -->
@@ -149,7 +157,7 @@ $CheckInputNumrows = mysqli_num_rows($CheckInputQuery);
                             <br>
                             <input type="submit" class="form-control btn-warning " value="ทำรายการถอน">
                         <?php
-                    }
+                    // }
                         ?>
                         </div>
                     </form>

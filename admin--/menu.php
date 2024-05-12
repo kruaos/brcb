@@ -38,8 +38,9 @@
           <i class="fas fa-user-cog"></i>
           สมัครสมาชิก
         </a>
-        <a class="dropdown-item" href="unmember.php">
-          <i class="fas fa-search"></i>
+        <a class="dropdown-item" href="exi-pay-tool.php">
+          <!-- <i class="fas fa-search"></i> -->
+          <i class="fas fas-door-open"></i>
           <span>ลาออกจากสมาชิก</span></a>
         </a>
         <a class="dropdown-item" href="dep-member-table.php">
