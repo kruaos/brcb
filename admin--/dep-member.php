@@ -31,37 +31,39 @@ include('menu.php');
     <div class="card-body">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
+                <form class="form-inline" action="dep-member.php" method="GET">
+                    <div class="form-group ">
+                        <label class="sr-only">ค้นหาชื่อสมาชิก</label>
+                        <input type="text" class="form-control" placeholder="ชื่อสมาชิก" name='Fristname'>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">ค้นหา</button>
+                </form>
+                    <a type="button" href="dep-member-add.php" class="btn btn-success ">เพิ่มสมาชิก</a>
+            </ul>
+
+        </nav>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
                 <?php for ($i = 1; $i <= $total_page; $i++) { ?>
                     <li class="page-item"><a class="page-link" href="dep-member.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
                 <?php } ?>
 
-                <form class="form-inline" action="dep-member.php" method="GET">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <label class="sr-only">ค้นหาชื่อสมาชิก</label>
-                        <input type="text" class="form-control" placeholder="ชื่อสมาชิก" name='Fristname'>
-                    </div>
-                    <button type="submit" class="btn btn-secondary mx-0 mb-2">ค้นหา</button>
-                </form>
-                    <a type="button" href="dep-member-add.php" class="btn btn-success mx-2 mb-2">เพิ่มสมาชิก</a>
             </ul>
 
         </nav>
-
-
-
-
 
         <table class="table table-sm " width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>รหัส</th>
                     <th>ชื่อ - สกุล </th>
-                    <th>regfund_all</th>
-                    <th>regfund 1</th>
-                    <th>regfund 2</th>
-                    <th>regfund 3</th>
+                    <th>บัญชีทั้งหมด</th>
+                    <th>บัญชีที่ 1</th>
+                    <th>บัญชีที่ 2</th>
+                    <th>บัญชีที่ 3</th>
                     <th>สถานะ</th>
                     <th>รายละเอียด</th>
+                    <th>สร้าง</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,6 +128,11 @@ include('menu.php');
                         </td>
                         <td>
                             <a href="dep-show-detail1.php?IDMember=<?php echo $IDMember; ?>" class="btn btn-sm btn-danger">โอน</a>
+                        </td>
+                        <td>
+                                <?php
+                                echo show_day($rs['CreateDate']);
+                                ?>
                         </td>
 
 

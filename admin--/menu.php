@@ -25,7 +25,8 @@
           ฝากเงินสัจจะ
         </a>
         <a class="dropdown-item" href="wit-pay-tool.php">
-          <i class="fas fa-donate"></i>
+          <i class="fas fa-money-bill"></i>
+          <!-- <i class="fa-solid fa-house"></i> -->
           ถอนเงินสัจจะ
         </a>
         <a class="dropdown-item" href="dep-report.php">
@@ -40,11 +41,11 @@
         </a>
         <a class="dropdown-item" href="exi-pay-tool.php">
           <!-- <i class="fas fa-search"></i> -->
-          <i class="fas fas-door-open"></i>
+          <i class="fas fa-window-close"></i>
           <span>ลาออกจากสมาชิก</span></a>
         </a>
         <a class="dropdown-item" href="dep-member-table.php">
-          <i class="fas fa-user-cog"></i>
+          <i class="fas fa-table"></i>
           ตารางสมาชิก
         </a>
       </div>
