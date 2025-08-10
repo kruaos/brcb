@@ -1,8 +1,9 @@
 <?php
-$setup=4;
+$setup=1;
 if($setup==1){
 // sever ออมทรัพย์
-	$host = "192.168.1.1";
+$host = "localhost";
+	// $host = "192.168.1.1";
 	$user = "root";
 	$db = "finance";
 	$pass="village";
