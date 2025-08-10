@@ -17,88 +17,87 @@ include('menu.php');
     <?php
     if (isset($_GET['IDmember']) == null) {
     ?>
-    <div class="container mt-5">
-        <form>
-            <div class="form-group">
-                <label class="h1">กรอกรหัสมาชิกสมาชิกสัจจะ (ตรวจสอบการกู้เงิน)</label>
-                <input style="font-size:large; height:50px;" type="number" name="IDmember" class="form-control" placeholder="กรอกรหัสสมาชิก" placeholder="0-9" required>
-            </div>
-            <button type="submit" class="btn btn-primary col-12"><h1>ค้นหา
-            </h1></button>
-        </form>
-    </div>
+        <div class="container mt-5">
+            <form>
+                <div class="form-group">
+                    <label class="h1">กรอกรหัสมาชิกสมาชิกสัจจะ (ตรวจสอบการกู้เงิน)</label>
+                    <input style="font-size:large; height:50px;" type="number" name="IDmember" class="form-control" placeholder="กรอกรหัสสมาชิก" placeholder="0-9" required>
+                </div>
+                <button type="submit" class="btn btn-primary col-12">
+                    <h1>ค้นหา
+                    </h1>
+                </button>
+            </form>
+        </div>
 
 
-    <div class="container mt-5">
+        <div class="container mt-5">
 
-<?php
-if (!isset($_POST['send1'])) {
-  // echo "1";
-?>
+            <?php
+            if (!isset($_POST['send1'])) {
+                // echo "1";
+            ?>
 
-  <form class="alert alert-success" method="POST">
-    <div class="form-group ">
-      <label class="h3">ค้นหาด้วยชื่อ</label>
-      <input style="height: 50px; font-size:large;" type="text" class="form-control" name="nameBookBank" placeholder="ป้อนชื่อบัญชี" required>
-    </div>
-    <button type="submit" class="col-12 btn btn-success" name="send1">
-      <h3>ค้นหา</h3>
-    </button>
-  </form>
-
-
-<?php
-
-} else {
-  // echo "2";
-?>
-  <table class="table table-striped">
-    <tr>
-      <th>เลขสมาชิก</th>
-      <th>ชื่อ-สกุล</th>
-      <th>ประวัติการกู้(ครั้ง)</th>
-      <th>สถานะการกู้หลังสุด</th>
-      <th>ทำรายการล่าสุด</th>
-    </tr>
-    <?php
-    include('../config/config.php');
-    $nameBB = $_POST['nameBookBank'];
-    // echo $nameBB;
-    //  $sql = "SELECT * from member  where Firstname like '%$nameBB%' or Lastname like '%$nameBB%' ";
-     $sql = "SELECT member.*, loanbook.* FROM `loanbook`  INNER JOIN member on member.IDMember=loanbook.IDMember where member.Firstname like '%$nameBB%' or member.Lastname like '%$nameBB%' GROUP BY member.IDMember ";
-
-    $qsql = mysqli_query($link, $sql);
+                <form class="alert alert-success" method="POST">
+                    <div class="form-group ">
+                        <label class="h3">ค้นหาด้วยชื่อ</label>
+                        <input style="height: 50px; font-size:large;" type="text" class="form-control" name="nameBookBank" placeholder="ป้อนชื่อบัญชี" required>
+                    </div>
+                    <button type="submit" class="col-12 btn btn-success" name="send1">
+                        <h3>ค้นหา</h3>
+                    </button>
+                </form>
 
 
-    while ($rs1 = mysqli_fetch_array($qsql)) {
-        // echo "<pre>";
-        // print_r($rs1);
-        // echo "</pre>";
-        $bankid=$rs1['IDMember'];
-        $LoanStatus=$rs1['14'];
+            <?php
+
+            } else {
+                // echo "2";
+            ?>
+                <table class="table table-striped">
+                    <tr>
+                        <th>เลขสมาชิก</th>
+                        <th>ชื่อ-สกุล</th>
+                        <th>ประวัติการกู้(ครั้ง)</th>
+                        <th>สถานะการกู้หลังสุด</th>
+                        <th>ทำรายการล่าสุด</th>
+                    </tr>
+                    <?php
+                    include('../config/config.php');
+                    $nameBB = $_POST['nameBookBank'];
+                    // echo $nameBB;
+                    //  $sql = "SELECT * from member  where Firstname like '%$nameBB%' or Lastname like '%$nameBB%' ";
+                    $sql = "SELECT member.*, loanbook.* FROM `loanbook`  INNER JOIN member on member.IDMember=loanbook.IDMember where member.Firstname like '%$nameBB%' or member.Lastname like '%$nameBB%' GROUP BY member.IDMember ";
+
+                    $qsql = mysqli_query($link, $sql);
 
 
+                    while ($rs1 = mysqli_fetch_array($qsql)) {
+                        // echo "<pre>";
+                        // print_r($rs1);
+                        // echo "</pre>";
+                        $bankid = $rs1['IDMember'];
+                        $LoanStatus = $rs1['14'];
 
+                        
+                        echo "<tr>";
+                        echo "<td>" . $bankid . "</td>";
+                        echo "<td>" . "<a href='loan-agreement.php?IDmember=$bankid'>" . $rs1['Title'] . $rs1['Firstname'] . '  ' . $rs1['Lastname'] . "</a>" . "</td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td>$LoanStatus</td>";
+                        echo "</tr>";
+                    }
 
+                    ?>
+                </table>
+                <a class="btn btn-danger" href="loan-agreement.php">ย้อนกลับ</a>
+            <?php
 
-      echo "<tr>";
-      echo "<td>" . $bankid. "</td>";
-      echo "<td>" ."<a href='loan-agreement.php?IDmember=$bankid'>". $rs1['Title'] . $rs1['Firstname'] .'  '.$rs1['Lastname'] ."</a>". "</td>";
-      echo "<td></td>";
-      echo "<td></td>";
-      echo "<td>$LoanStatus</td>";
-      echo "</tr>";
-    }
-    
-    ?>
-  </table>
-  <a class="btn btn-danger" href="loan-agreement.php">ย้อนกลับ</a>
-<?php
+            }
+            ?>
 
-}
-?>
-
-</div>
+        </div>
 
 
     <?php
@@ -137,10 +136,10 @@ if (!isset($_POST['send1'])) {
                 <tbody>
                     <!-- loop  -->
                     <?php
-                     $sql = "SELECT member.*, loanbook.* FROM `loanbook`  INNER JOIN member on member.IDMember=loanbook.IDMember where loanbook.IDMember=$IDmember";
-                     $query = mysqli_query($link, $sql);
-                     // print_r($sql);
-                     $num = 0;
+                    $sql = "SELECT member.*, loanbook.* FROM `loanbook`  INNER JOIN member on member.IDMember=loanbook.IDMember where loanbook.IDMember=$IDmember";
+                    $query = mysqli_query($link, $sql);
+                    // print_r($sql);
+                    $num = 0;
                     while ($rs1 = mysqli_fetch_array($query)) {
                     ?>
                         <tr>
