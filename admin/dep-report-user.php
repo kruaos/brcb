@@ -24,7 +24,7 @@ $sql = "
     JOIN regfund AS r ON d.IDRegFund = r.IDRegFund
     JOIN member AS m ON r.IDMember = m.IDMember
     WHERE d.CreateDate = '$DepDate' AND d.Username = '$Username'
-    ORDER BY m.IDMember,
+    ORDER BY d.IDDeposit,
              CASE WHEN d.Amount = 30 THEN 0 ELSE 1 END, 
              d.IDRegFund ASC
 ";
